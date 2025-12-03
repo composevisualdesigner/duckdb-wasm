@@ -34,7 +34,7 @@ env:
 jobs:
     clang_format:
         name: Clang-Format
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         steps:
             - uses: actions/checkout@v4
               with:
@@ -51,7 +51,7 @@ jobs:
 
     eslint:
         name: ESLint
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         steps:
             - uses: actions/checkout@v4
               with:
@@ -95,7 +95,7 @@ jobs:
 
     tpchgen:
         name: TPCH Generator
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         steps:
             - uses: actions/checkout@v4
               with:
@@ -125,7 +125,7 @@ jobs:
 
     dataprep:
         name: Dataprep
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         steps:
             - uses: actions/checkout@v4
               with:
@@ -159,7 +159,7 @@ jobs:
 
     native_debug:
         name: Native / Debug
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         if: false
         needs:
             - dataprep
@@ -257,7 +257,7 @@ jobs:
 
     native_release:
         name: Native / Release
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         if: false
         needs:
             - dataprep
@@ -355,7 +355,7 @@ jobs:
 
     wasm_mvp:
         name: Wasm / mvp
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         needs:
             - dataprep
             - tpchgen
@@ -398,7 +398,7 @@ jobs:
 
     wasm_eh:
         name: Wasm / eh
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         needs:
             - dataprep
             - tpchgen
@@ -441,7 +441,7 @@ jobs:
 
     wasm_coi:
         name: Wasm / coi
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         needs:
             - dataprep
             - tpchgen
@@ -485,7 +485,7 @@ jobs:
 
     wasm_mvp_loadable:
         name: Wasm / mvp (loadable version)
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         needs:
             - dataprep
             - tpchgen
@@ -532,7 +532,7 @@ jobs:
 
     wasm_eh_loadable:
         name: Wasm / eh (loadable version)
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         needs:
             - dataprep
             - tpchgen
@@ -579,7 +579,7 @@ jobs:
 
     wasm_coi_loadable:
         name: Wasm / coi (loadable version)
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         needs:
             - dataprep
             - tpchgen
@@ -627,7 +627,7 @@ jobs:
 
     js_libs:
         name: Js / Libraries
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         needs:
             - wasm_mvp
             - wasm_eh
@@ -941,7 +941,7 @@ jobs:
 
     js_libs_loadable:
         name: Js / Libraries (loadable version)
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         needs:
             - wasm_mvp_loadable
             - wasm_eh_loadable
@@ -1095,7 +1095,7 @@ jobs:
 
     js_libs_loadable_deploy:
         name: Js / Libraries (loadable version) - Deploy
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         permissions: # only this job has permission to upload to npm using trusted publishing
             id-token: write  # Required for OIDC
             contents: read
@@ -1246,7 +1246,7 @@ jobs:
 
     merge_reports:
         name: Merge benchmark reports
-        runs-on: ubuntu-latest
+        runs-on: self-hosted
         if: github.ref == 'refs/heads/main'
         needs:
             - js_libs
